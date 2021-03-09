@@ -17,5 +17,13 @@ class User < ActiveRecord::Base
         @user 
     end
 
+    def self.register
+        puts "Choose a Username."
+        username = STDIN.gets.chomp
+        puts "Choose a Password."
+        password = STDIN.gets.chomp
+        @user = User.create(username: username, password: password)
+    end
+
     binding.pry 
 end
