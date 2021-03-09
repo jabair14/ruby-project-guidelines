@@ -27,5 +27,5 @@ uf5 = UserFortune.create(user_id: michael.id, quote_id: fortune5.id)
 
 
 
-binding.pry 
+# binding.pry 
 ##something here

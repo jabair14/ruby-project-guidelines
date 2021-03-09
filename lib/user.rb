@@ -3,13 +3,19 @@ class User < ActiveRecord::Base
     has_many :quotes, through: :user_fortunes 
     
 
-    def get_all_fortunes
-        self.quotes.each do |quote|
-            put quote.all 
-        end
-        
+    def self.login_helper
+        puts "What is your username"
+        username = STDIN.gets.chomp
+        puts "What is your password?"
+        password = STDIN.gets.chomp
+        user_inst = User.find_by(username: username, password: password)
 
+        until user_int
+            puts "Incorrect username or password"
+            user_inst = User.login_helper
+        end
+        user_inst
     end
 
-#     binding.pry 
+    binding.pry 
 end
