@@ -25,5 +25,5 @@ class User < ActiveRecord::Base
         @user = User.create(username: username, password: password)
     end
 
-    binding.pry 
+    #binding.pry 
 end
