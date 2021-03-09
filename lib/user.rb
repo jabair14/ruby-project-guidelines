@@ -4,17 +4,17 @@ class User < ActiveRecord::Base
     
 
     def self.login_helper
-        puts "What is your username"
+        puts "Input Username."
         username = STDIN.gets.chomp
-        puts "What is your password?"
+        puts "Input Password."
         password = STDIN.gets.chomp
-        user_inst = User.find_by(username: username, password: password)
+        @user = User.find_by(username: username, password: password)
 
-        until user_int
+        until @user
             puts "Incorrect username or password"
-            user_inst = User.login_helper
+            @user = User.login_helper
         end
-        user_inst
+        @user 
     end
 
     binding.pry 

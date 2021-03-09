@@ -8,9 +8,9 @@ UserFortune.destroy_all
 
 
 jabair = User.create(username: "jabair", password: "abc123")
-shafee = User.create(username: "shafee", password: "abc123")
+shafee = User.create(username: "shafee", password: "shafee123")
 andre = User.create(username: "andre", password: "andre3000")
-stuart = User.create(username: "stuart", password: "abc123")
+stuart = User.create(username: "stuart", password: "stuart123")
 michael = User.create(username: "mj", password: "goat23")
 
 fortune1 = Quote.create(affirmation: "You're the master of your domain.")
