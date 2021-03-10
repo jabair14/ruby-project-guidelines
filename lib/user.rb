@@ -25,5 +25,30 @@ class User < ActiveRecord::Base
         @user = User.create(username: username, password: password)
     end
 
+
+    def display_fortunes 
+        # puts "Your fortunes here!"
+        self.quotes.each do |quote|
+            puts quote.affirmation
+           
+        end
+        # binding.pry 
+
+        # if quotes.length > 0
+
+        #     array_of_hashes = quotes.map do |quotes|
+        # #         # The key of the hash is what gets shown
+        # #         # The value of the hash is what gets saved
+        #         {quotes.affirmation => quotes.id}
+        #     end
+        # end
+
+        # #     post_id = TTY::Prompt.new.select("What post do you want to see more info?", array_of_hashes)
+        # #     puts "You chose post with ID of #{post_id}"
+        # # else
+        # #     puts "You don't have any posts sorry"
+        # # end
+    end
+
     #binding.pry 
 end

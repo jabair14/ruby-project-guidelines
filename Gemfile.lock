@@ -15,12 +15,16 @@ GEM
     arel (9.0.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.8)
+    faker (2.16.0)
+      i18n (>= 1.6, < 2)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
     minitest (5.14.4)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -41,19 +45,32 @@ GEM
     sqlite3 (1.4.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    tty-color (0.6.0)
+    tty-cursor (0.7.1)
+    tty-prompt (0.23.0)
+      pastel (~> 0.8)
+      tty-reader (~> 0.8)
+    tty-reader (0.9.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      wisper (~> 2.0)
+    tty-screen (0.8.1)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
+    wisper (2.0.1)
 
 PLATFORMS
-  x86_64-darwin-20
+  x86_64-darwin-19
 
 DEPENDENCIES
   activerecord (~> 5.2)
+  faker
   pry
   rake
   require_all
   sinatra-activerecord
   sqlite3
+  tty-prompt
 
 BUNDLED WITH
    2.2.11
