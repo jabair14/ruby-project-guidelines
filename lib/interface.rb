@@ -59,21 +59,21 @@ class Interface
         sleep 2
         puts "Welcome, #{@user.username}!"
         prompt.select "What do you want to do today?" do |menu|
-            menu.choice "See all categories", -> {see_all_categories_helper}
-            menu.choice "See my posts", -> {see_my_posts_helper}
-            menu.choice "Create a POst", -> {create_a_post_helper}
-            menu.choice "Exit app", -> {puts "goodbye"}
+            #menu.choice "See all categories", -> {see_all_categories_helper}
+            menu.choice "See my quotes", -> {see_my_quotes_helper}
+            menu.choice "View and save quotes", -> {save_quote}
+            menu.choice "Exit app", -> {puts "peace"}
         end
     end
 
 
-    def create_a_post_helper
+    def save_quote
         # Post.create(...)
     end
 
 
     def see_my_posts_helper
-        @user.display_posts
+        @user.display_quotes
         main_menu
     end
 
