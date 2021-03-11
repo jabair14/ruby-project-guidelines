@@ -25,22 +25,12 @@ class Interface
         
         end
 
-
-        # prompt.select "Would you like to login or register" do |menu|
-        #     menu.choice "Login", -> { login_helper }
-        #     menu.choice "Register", -> {register_helper}
-        #end
-
-
-
-
-
     end
 
     def login_assist
         puts "You chose login"
         @user = User.login_helper
-        #binding.pry 
+        
     
     end
 
@@ -55,8 +45,6 @@ class Interface
     end
 
     def main_menu
-        # @user.reload
-        # system 'clear'
         sleep 2
         puts "Welcome, #{@user.username}!"
         prompt.select "What do you want to do today?" do |menu|
@@ -90,28 +78,24 @@ class Interface
         # @quote = Quote.
         Quote.display_all_quotes 
         @user.reload
+        
         sleep 2 
         puts "Type the title of your favorite fortune to add to favorites."
         answer = STDIN.gets.chomp
-        if answer == "Water"
-            UserFortune.create(user_id: @user, quote_id: @quote)
+      
+        bibble = Quote.find_by(title: answer) 
+         
+        if  answer = bibble
+            UserFortune.create(user_id: @user.id, quote_id: bibble.id)
             puts "The future is in YOUR hands!"
-        else
+        else 
             puts "We don't have that one....Un-fortunately : ("
-        end
         
-        main_menu
+        end
+         main_menu
     
-    end
-
-
-
-    # def see_all_categories_helper
-
-    # end
-
-
-
+        end
+    
 
     def run
         welcome
