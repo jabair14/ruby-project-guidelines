@@ -48,7 +48,7 @@ class Interface
         sleep 2
         puts "Welcome, #{@user.username}!"
         prompt.select "What do you want to do today?" do |menu|
-            #menu.choice "See all categories", -> {see_all_categories_helper}
+            menu.choice "Delete saved fortunes", -> {delete_quote_helper}
             menu.choice "See my fortunes", -> {see_my_fortunes_helper} #works
             menu.choice "Show all fortunes", -> {show_all_fortunes_helper}
             menu.choice "Exit app", -> {puts "peace"}
@@ -95,6 +95,34 @@ class Interface
          main_menu
     
         end
+
+
+        def delete_quote_helper
+            # puts "Type the Title of your favorite fortune."
+            # show_all_fortunes_helper
+            # @quote = Quote.
+            Quote.display_all_quotes 
+            @user.reload
+            
+            sleep 2 
+            puts "Type the title of the fortune you would like to destroy"
+            answer = STDIN.gets.chomp
+          
+            bibble = Quote.find_by(title: answer) 
+             
+            if  answer = bibble
+                UserFortune.where(user_id: @user.id, quote_id: bibble.id).destroy_all
+                puts "The future is in YOUR hands!"
+            else 
+                puts "You don't have that one....Un-fortunately : ("
+            
+            end
+             main_menu
+        
+            end
+
+
+
     
 
     def run
