@@ -14,11 +14,13 @@ class Quote < ActiveRecord::Base
        
     end
 
-    # def self.choose_quote_title
-    #     @quote 
-    #     binding.pry 
-    # end
+    # def self.quote_help
 
+    #     Quote.all.sample = quote
+    
+    #     puts quote
+    #     #binding.pry 
+    # end
     
 end
 

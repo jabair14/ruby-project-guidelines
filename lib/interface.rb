@@ -14,18 +14,22 @@ class Interface
 
     def ask_for_login_or_register
          puts "Would you like to login or register?"
-       
-         answer = STDIN.gets.chomp
-         if answer == "login"
-             login_assist
-         elsif answer == "register"
-             register_assist
-         else
-            warning_message
+         sleep 1
+         prompt.select "What do you want to do today?" do |menu|
+             menu.choice "Login", -> {login_assist}
+             menu.choice "Register", -> {register_assist}
+            
+     #      answer = STDIN.gets.chomp
+    #      if answer == "login"
+    #          login_assist
+    #      elsif answer == "register"
+    #          register_assist
+    #      else
+    #         warning_message
         
-        end
+         end
 
-    end
+     end
 
     def login_assist
         puts "You chose login"
@@ -48,11 +52,13 @@ class Interface
         sleep 2
         puts "Welcome, #{@user.username}!"
         prompt.select "What do you want to do today?" do |menu|
-            menu.choice "Delete saved fortunes", -> {delete_quote_helper}
-            menu.choice "See my fortunes", -> {see_my_fortunes_helper} #works
             menu.choice "Show all fortunes", -> {show_all_fortunes_helper}
-            menu.choice "Exit app", -> {puts "peace"}
             menu.choice "Favorite a fortune!", -> {favorite_quote_helper}
+            menu.choice "See my fortunes", -> {see_my_fortunes_helper} #works
+            menu.choice "Delete saved fortunes", -> {delete_quote_helper}
+            menu.choice "Daily fortune", -> {daily_fortune_helper}
+            menu.choice "Exit app", -> {puts "peace"}
+            
         end
     end
 
@@ -101,11 +107,16 @@ class Interface
             # puts "Type the Title of your favorite fortune."
             # show_all_fortunes_helper
             # @quote = Quote.
-            Quote.display_all_quotes 
+        puts "***All Fortunes***"
+            sleep 2
+        Quote.display_all_quotes
+            sleep 2
+        puts "***Your Fortunes***"
+            sleep 2
+            @user.display_fortunes
             @user.reload
-            
-            sleep 2 
-            puts "Type the title of the fortune you would like to destroy"
+            sleep 1 
+            puts "Type the title of the fortune you would like to delete"
             answer = STDIN.gets.chomp
           
             bibble = Quote.find_by(title: answer) 
@@ -114,12 +125,25 @@ class Interface
                 UserFortune.where(user_id: @user.id, quote_id: bibble.id).destroy_all
                 puts "The future is in YOUR hands!"
             else 
-                puts "You don't have that one....Un-fortunately : ("
+                puts "You don't have that one, try again"
             
             end
              main_menu
         
             end
+
+            def daily_fortune_helper
+                daily_fortune = Quote.all.sample
+                puts daily_fortune.affirmation
+
+                puts "Would you like to save?"
+
+                sleep 5
+
+                favorite_quote_helper
+            end 
+
+
 
 
 
