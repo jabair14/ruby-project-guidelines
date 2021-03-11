@@ -1,6 +1,6 @@
 class Interface
 
-    attr_accessor :username, :quote, :user_fortune
+    attr_accessor :user, :quote, :user_fortune
     attr_reader :prompt
 
     def initialize
@@ -57,7 +57,7 @@ class Interface
     def main_menu
         # @user.reload
         # system 'clear'
-        # sleep 2
+        sleep 2
         puts "Welcome, #{@user.username}!"
         prompt.select "What do you want to do today?" do |menu|
             #menu.choice "See all categories", -> {see_all_categories_helper}
@@ -80,28 +80,27 @@ class Interface
 
     def see_my_fortunes_helper
         @user.display_fortunes
+        
         main_menu
     end
 
     def favorite_quote_helper
         # puts "Type the Title of your favorite fortune."
         # show_all_fortunes_helper
+        # @quote = Quote.
+        Quote.display_all_quotes 
+        @user.reload
+        sleep 2 
+        puts "Type the title of your favorite fortune to add to favorites."
         answer = STDIN.gets.chomp
-            if answer == Quote.all.title
-                puts "that worked"
-            end
-
-        # @user_fortune.favorite_quote
-
-
-         
-        # show_all_fortunes_helper
-        # puts "Type the title of your favorite fortune to save it!"
-        # if  Quote.title == STDIN.gets.chomp
-        #     UserFortune.create(user_id: user, quote_id: quote)
-        # else 
-        #     puts "Sorry, that's not your fortune!"
-        # end
+        if answer == "Water"
+            UserFortune.create(user_id: @user, quote_id: @quote)
+            puts "The future is in YOUR hands!"
+        else
+            puts "We don't have that one....Un-fortunately : ("
+        end
+        
+        main_menu
     
     end
 

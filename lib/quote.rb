@@ -14,6 +14,11 @@ class Quote < ActiveRecord::Base
        
     end
 
+    # def self.choose_quote_title
+    #     @quote 
+    #     binding.pry 
+    # end
+
     
 end
 
