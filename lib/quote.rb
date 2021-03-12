@@ -5,8 +5,9 @@ class Quote < ActiveRecord::Base
     def self.display_all_quotes 
        Quote.all.each do |quote|
     
-        puts "Fortune Title: #{quote.title}" 
-        puts "Fortune: #{quote.affirmation}"
+        puts Rainbow("LOWKEY: #{quote.title}").white
+        puts Rainbow("QUOTE: #{quote.affirmation}").orange
+        puts ""
            
         # .affirmation
        end

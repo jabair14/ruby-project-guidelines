@@ -10,3 +10,4 @@ gem "activerecord", "~> 5.2"
 
 gem 'faker'
 gem 'tty-prompt'
+gem 'rainbow'
